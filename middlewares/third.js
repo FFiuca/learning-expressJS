@@ -4,12 +4,14 @@ const morgan = require('morgan')
 const expressLayout = require('express-ejs-layouts')
 const liveReload = require('livereload')
 const connectLiveReload = require('connect-livereload')
+const bodyParser = require('body-parser')
 
 const exp = {}
 
 exp.cors = cors()
 exp.morgan =  morgan('dev')
 exp.expressLayout = expressLayout
+exp.bodyParser = bodyParser.urlencoded()
 
 // handle file upload multer
 let upload = multer({ dest : 'tmp'})
