@@ -25,9 +25,9 @@ app.use(thirdM.bodyParser)
 app.use(thirdM.expressLayout)
 thirdM.liveReload(app)
 
-app.set('views', path.join(__dirname, 'views'))
+// app.set('views', path.join(__dirname, 'views')) // NOTE - if use custom root views folder, must oeverride setting views
 
-const port = 3000
+const port = process.env.PORT || 3000
 
 
 app.listen(port, ()=>{
