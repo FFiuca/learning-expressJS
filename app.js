@@ -75,12 +75,26 @@ const route = require('./routes/index')
 const { session } = require('passport')
 // const { bodyParser } = require('./middlewares/third')
 
+//NOTE - make variable accesable from template ejs
+app.use((req, res, next)=>{
+    if(req.isAuthenticated())
+        res.locals.userLogin = req.user
+    
+    res.locals.isAuth = req.isAuthenticated()
+
+    console.log('init local variables', res.locals.user, res.locals)
+
+    return next()
+})
+
+//SECTION - Define routing
+route(app)
 // auth
-app.use('/admin/user', route.router.auth.user)
-app.use('/admin', route.router.auth.admin)
+// app.use('/admin/user', route.router.auth.user)
+// app.use('/admin', route.router.auth.admin)
 
 // guest
-app.use('/', route.router.guest.auth)
+// app.use('/', route.router.guest.auth)
 
 
 app.all('/query/:id?', (req, res) =>{
